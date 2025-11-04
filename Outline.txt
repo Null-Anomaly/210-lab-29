@@ -1,0 +1,17 @@
+Sample Proposal
+
+This project will aim to simulate fruit trees of various types as it may appear in an oarchard.
+This program will label a random number of trees by a randomly generated ID. Each tree will
+have the type of tree it is, the number of fruit it makes, and how old it is.
+
+The objective is to simulate crop cycles for farmers, and when to replant certain trees.
+
+How this will be done:
+
+So first and foremost is the map. The first pair will always be the randomly generated ID.
+The second pair will be an array containing strings. These strings will be made to represent
+the type of tree, the number of fruit the tree had harvested, and how old the tree is.
+
+
+Simulated events will include. Receiving fertilizer, Spray of prestecides, inscect plague,
+droughts, and heavy rains. These random events will be rolled for each year/time period that passes.
