@@ -6,6 +6,7 @@ IDE used: VSC*/
 #include <string>
 #include <map>
 #include <array>
+#include <ifstream>
 using namespace std;
 
 //Functions that handle the event resolutions based on a random number
@@ -31,6 +32,25 @@ int main()
     //The randomized choices will include the tree type, fruit it produced, and age.
     //I'll have the randomized tree options be individual function calls to reduce the size of main.
 
+    //Variables
+    string treeput;
+    string fruit;
+    string num;
+    string age;
+    map<string, array<string,3>> farm;
+
+    //When I have file input this will actually do something
+    while(fin.good())
+    {
+        getline(fin, treeput);
+        fruit = tree_Type();
+        num = fruit_Number();
+        age = tree_Age();
+        farm[treeput] = {fruit, num, age};
+        //And so on and so forth.
+    }
+
+    return 0;
 }
 
 void event_Resolution(int, map<string, array<string,3>>)
