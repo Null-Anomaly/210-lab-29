@@ -42,6 +42,7 @@ int main()
     string fruit;
     string num;
     string age;
+    int randocool = 0;
     map<string, array<string,3>> farm;
 
     ifstream fin("Outline.txt)");
@@ -65,7 +66,11 @@ int main()
     {
         //randomize each time. If under 20% do an if statement to put in a randomized event
         //Otherwise, just increase age by 1, and make it so that the trees have a random number of fruit
+        event_Resolution(randocool, farm); //This should change the actual farm map, it it doesn't it will be
+        //changed to pass by reference.
+
         
+
     }
     return 0;
 }
@@ -75,23 +80,23 @@ void event_Resolution(int rando, map<string, array<string,3>> treee)
 {
     if (rando == 1)
     {
-
+        //Rain. Increases fruit count.
     }
     if (rando == 2)
     {
-        
+        //Fertilized. Increases Fruit count. Maintains age
     }
     if (rando == 3)
     {
-        
+        //Pestecide. Increases age. Reduce effect of plague
     }
     if (rando == 4)
     {
-        
+        //Plague. Will be reduced if pestecide was used last round. Decrease fruit
     }
     if (rando == 5)
     {
-        
+        //Droughts. Decrease Fruit count.
     }
 
 };
@@ -105,6 +110,11 @@ string tree_Type()
 };
 string fruit_Number()
 {
+    //This will randomly generate fruit number based on age and type.
+    //A number will be randomly generated. An array with like a hundred? Some numbe
+    //of values will be made and just randomly call on one of them to return the number
+    //I actually want as a string since I can't make an array two types without it
+    //being an object of some sort.
 
 };
 string tree_Age()
