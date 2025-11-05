@@ -21,6 +21,10 @@ string tree_Type();
 string fruit_Number();
 string tree_Age();
 
+//These are for actually editing it once running.
+string fruit_Change(map<string, array<string,3>>,int);
+string age_Up(map<string, array<string,3>>);
+
 
 //The main will handle the filling of the data
 //It should also handle the random event chance stuff. Ill give a 20%
@@ -68,10 +72,14 @@ int main()
         //Otherwise, just increase age by 1, and make it so that the trees have a random number of fruit
         event_Resolution(randocool, farm); //This should change the actual farm map, it it doesn't it will be
         //changed to pass by reference.
-
-        
-
+        //Change fruit count normally if there's no event resolution
+        //Age up the trees once.
+        //Print out this batch of trees in a nice manner. Likely going to have
+        //The ID stated first, then it being the Fruit type, number of fruit, etc. information listed out
+        print_Trees(farm);
     }
+
+
     return 0;
 }
 
@@ -106,6 +114,8 @@ void print_Trees(map<string, array<string,3>>)
 };
 string tree_Type()
 {
+    //This will only be called once. It's gonna randomly select a tree from
+    //Some fruit that I think grow on trees.
 
 };
 string fruit_Number()
@@ -119,5 +129,17 @@ string fruit_Number()
 };
 string tree_Age()
 {
-
+    //Randomized starting age.
 };
+
+string fruit_Change(map<string, array<string,3>> treee,int disaster)
+{
+    //Adjusts fruit count. Accounts for disasters.
+}
+
+string age_Up(map<string, array<string,3>> treee, int disaster)
+{
+    //Will just make the number listed for age increase by however much.
+    //Will essentially just have a bunch of if statements to see the age number
+    //Age will go up to 100.
+}
