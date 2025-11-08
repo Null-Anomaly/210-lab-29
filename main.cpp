@@ -161,23 +161,51 @@ string tree_Age()
 
 string fruit_Change(map<string, array<string,3>> treee,int disaster)
 {
+    array<string, 51> fruit = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+  "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
+  "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine", "thirty",
+  "thirty-one", "thirty-two", "thirty-three", "thirty-four", "thirty-five", "thirty-six", "thirty-seven", "thirty-eight", "thirty-nine", "forty",
+  "forty-one", "forty-two", "forty-three", "forty-four", "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine", "fifty",};
+
     auto it = treee.begin();
     string fruits = it->second[1];
+    int randomization = 0;
+
     if(disaster == 1)
     {
-
+        randomization = rand() % 50 + 10;
+        if(randomization > 50)
+        {
+            randomization = 50;
+            return fruit[randomization];
+        }
     }
     if(disaster == 2)
     {
+        randomization = rand() % 50 + 15;
+        if(randomization > 50)
+        {
+            randomization = 50;
+            return fruit[randomization];
+        }
 
     }
     if(disaster == 4)
     {
 
     }
+    if(disaster == 5)
+    {
+        randomization = rand() % 50 - 10;
+        if(randomization < 0)
+        {
+            randomization = 0;
+            return fruit[randomization];
+        }
+    }
     if(disaster == 6)
     {
-        
+
     }
     //Adjusts fruit count. Accounts for disasters.
 }
