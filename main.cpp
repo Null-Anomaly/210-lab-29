@@ -87,16 +87,26 @@ int main()
 //Takes in a number, then spits out according to that number.
 void event_Resolution(int rando, map<string, array<string,3>> treee)
 {
+    static bool pestecide_Used = false;
     if (rando == 1)
     {
+        pestecide_Used = false;
+        fruit_Change(treee, rando);
+        age_Up(treee, rando);
         //Rain. Increases fruit count.
     }
     if (rando == 2)
     {
+        pestecide_Used = false;
+        fruit_Change(treee, rando);
+        age_Up(treee, rando);
         //Fertilized. Increases Fruit count. Maintains age
     }
     if (rando == 3)
     {
+        fruit_Change(treee, rando);
+        age_Up(treee, rando);
+        pestecide_Used = true;
         //Pestecide. Increases age. Reduce effect of plague
     }
     if (rando == 4)
@@ -109,8 +119,14 @@ void event_Resolution(int rando, map<string, array<string,3>> treee)
     }
 
 };
-void print_Trees(map<string, array<string,3>>)
+void print_Trees(map<string, array<string,3>> treee)
 {
+    auto it = treee.begin();
+    while(it != treee.end())
+    {
+        cout << "Tree ID: " << it->first << " | Type: " << it->second[0] << " | Fruit Count: " << it->second[1] << " | Age: " << it->second[2] << endl;
+        it++;
+    };
 
 };
 string tree_Type()
@@ -171,6 +187,11 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
     string fruits = it->second[1];
     int randomization = 0;
 
+    if(disaster == 0)
+    {
+        randomization = rand() % 50;
+        return fruit[randomization];
+    }
     if(disaster == 1)
     {
         randomization = rand() % 50 + 10;
@@ -179,6 +200,7 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
             randomization = 50;
             return fruit[randomization];
         }
+        return fruit[randomization];
     }
     if(disaster == 2)
     {
@@ -188,11 +210,17 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
             randomization = 50;
             return fruit[randomization];
         }
-
+        return fruit[randomization];
     }
     if(disaster == 4)
     {
-
+        randomization = rand() % 50 - 20;
+        if(randomization < 0)
+        {
+            randomization = 0;
+            return fruit[randomization];
+        }
+        return fruit[randomization];
     }
     if(disaster == 5)
     {
@@ -202,10 +230,17 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
             randomization = 0;
             return fruit[randomization];
         }
+        return fruit[randomization];
     }
     if(disaster == 6)
     {
-
+        randomization = rand() % 50 - 5;
+        if(randomization < 0)
+        {
+            randomization = 0;
+            return fruit[randomization];
+        }
+        return fruit[randomization];
     }
     //Adjusts fruit count. Accounts for disasters.
 }
@@ -233,6 +268,14 @@ string age_Up(map<string, array<string,3>> treee, int disaster)
         i++;
     }
 
+    if (disaster == 3)
+    {
+        i ++;
+    }
+    if (disaster == 2)
+    {
+        i--;
+    }
     age_str = age[i + 1];
     return age_str;
     //Will just make the number listed for age increase by however much.
