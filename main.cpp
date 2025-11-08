@@ -50,8 +50,8 @@ int main()
     int randocool = 0;
     map<string, array<string,3>> farm;
 
-    ifstream fin("Values.txt)");
-    fin.open("Values.txt");
+    ifstream fin("Values_short.txt)");
+    fin.open("Values_short.txt");
 
     //When I have file input this will actually do something
     while(fin.good())
@@ -86,6 +86,7 @@ int main()
             cout << "Area 3b passed\n";
         }
 
+        cout << "Year: " << i + 1 << "\n";
         print_Trees(farm);
 
         //randomize each time. If under 20% do an if statement to put in a randomized event
@@ -99,6 +100,8 @@ int main()
         
     }
 
+    cout << "Just here to look at all of the info. Just hit enter to close.\n";
+    cin.get();
 
     return 0;
 }
@@ -158,7 +161,7 @@ void print_Trees(map<string, array<string,3>> treee)
     auto it = treee.begin();
     while(it != treee.end())
     {
-        cout << "Tree ID: " << it->first << " Type: " << it->second[0] << " Fruit Count: " << it->second[1] << " Age: " << it->second[2] << "\n";
+        cout << "Tree ID: " << it->first << " | Type: " << it->second[0] << " | Fruit Count: " << it->second[1] << " | Age: " << it->second[2] << "\n";
         it++;
     };
 
