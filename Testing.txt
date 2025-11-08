@@ -1,0 +1,35 @@
+To unit test these various functions
+my personal strategy is to put simple print out statements
+throughout the code as it goes.
+Each function will have an entry statement and an exit statement
+Just a simple print function to make sure they were hit
+
+Main portion of the driver program that does things
+
+for(int i = 0; i < 25; i++)
+    {
+        randocool = rand() % 100;
+        if(randocool <= 20)
+        {
+            event_Resolution(randocool, farm);
+            cout << "Area 3a passed\n";
+        }
+        else
+        {
+            fruit_Change(farm, 0);
+            age_Up(farm, 0);
+            cout << "Area 3b passed\n";
+        }
+
+        cout << "Year: " << i + 1 << "\n";
+        print_Trees(farm);
+
+Does not include variables and the actual filling of the map list
+But it does run through the various iterations that it can be.
+
+I'm not worried about things working properly because if it compiles
+that means it was able to actually read all of the data being sent through.
+Compiling at all means there's no faults, all data is being read, and there's no errant overflows.
+
+While this is usually a dangerous assumption to make, due to the data types that I'm working
+with, it would error out if these things were not true.
