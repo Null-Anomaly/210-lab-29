@@ -51,6 +51,7 @@ int main()
     map<string, array<string,3>> farm;
 
     ifstream fin("Values.txt)");
+    fin.open("Values.txt");
 
     //When I have file input this will actually do something
     while(fin.good())
@@ -62,10 +63,13 @@ int main()
         farm[treeput] = {fruit, num, age};
         //And so on and so forth.
     }
+    cout << "Program cleared area 1\n";
 
     //Print initial conditions here. Then from there we begin doing the various loops
     //So with this spot we start doing randomization
     //Insert random integer here.
+    print_Trees(farm);
+    cout << "Program cleared area 2\n";
 
     for(int i = 0; i < 25; i++)
     {
@@ -73,11 +77,13 @@ int main()
         if(randocool <= 20)
         {
             event_Resolution(randocool, farm);
+            cout << "Area 3a passed\n";
         }
         else
         {
             fruit_Change(farm, 0);
             age_Up(farm, 0);
+            cout << "Area 3b passed\n";
         }
 
         print_Trees(farm);
@@ -210,8 +216,6 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
   "thirty-one", "thirty-two", "thirty-three", "thirty-four", "thirty-five", "thirty-six", "thirty-seven", "thirty-eight", "thirty-nine", "forty",
   "forty-one", "forty-two", "forty-three", "forty-four", "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine", "fifty",};
 
-    auto it = treee.begin();
-    string fruits = it->second[1];
     int randomization = 0;
     
     //Rain
@@ -294,9 +298,8 @@ string age_Up(map<string, array<string,3>> treee, int disaster)
     int i = 0;
 
     auto it = treee.begin();
-    string age_str = it->second[2];
 
-    while( age_str != age[i])
+    while( it->second[2] != age[i])
     {
         i++;
     }
@@ -309,8 +312,8 @@ string age_Up(map<string, array<string,3>> treee, int disaster)
     {
         i--;
     }
-    age_str = age[i + 1];
-    return age_str;
+
+    return age[i + 1];
     //Will just make the number listed for age increase by however much.
     //Will essentially just have a bunch of if statements to see the age number
     //Age will go up to 100.
