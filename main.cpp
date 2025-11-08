@@ -22,8 +22,8 @@ string fruit_Number();
 string tree_Age();
 
 //These are for actually editing it once running.
-string fruit_Change(map<string, array<string,3>>, int);
-string age_Up(map<string, array<string,3>>, int);
+string fruit_Change(map<string, array<string,3>>&, int);
+string age_Up(map<string, array<string,3>>&, int);
 
 
 //The main will handle the filling of the data
@@ -211,7 +211,7 @@ string tree_Age()
 };
 
 //Changes the fruit's fruit number
-string fruit_Change(map<string, array<string,3>> treee,int disaster)
+string fruit_Change(map<string, array<string,3>> &treee,int disaster)
 {
     array<string, 51> fruit = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
   "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
@@ -286,7 +286,7 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
 }
 
 //Increases tree's age
-string age_Up(map<string, array<string,3>> treee, int disaster)
+string age_Up(map<string, array<string,3>> &treee, int disaster)
 {
     array<string, 101> age = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
   "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
