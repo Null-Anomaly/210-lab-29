@@ -1,4 +1,4 @@
-/*Comsc 210 | Lab 29 | Lawrence Bryant
+/*Comsc 210 | Lab 29+30 | Lawrence Bryant
 IDE used: VSC*/
 
 //Generic includes for this pseudocode.
@@ -70,16 +70,27 @@ int main()
     for(int i = 0; i < 25; i++)
     {
         randocool = rand() % 100;
+        if(randocool <= 20)
+        {
+            event_Resolution(randocool, farm);
+        }
+        else
+        {
+            fruit_Change(farm, 0);
+            age_Up(farm, 0);
+        }
+
+        print_Trees(farm);
 
         //randomize each time. If under 20% do an if statement to put in a randomized event
         //Otherwise, just increase age by 1, and make it so that the trees have a random number of fruit
-        event_Resolution(randocool, farm); //This should change the actual farm map, it it doesn't it will be
+         //This should change the actual farm map, it it doesn't it will be
         //changed to pass by reference.
         //Change fruit count normally if there's no event resolution
         //Age up the trees once.
         //Print out this batch of trees in a nice manner. Likely going to have
         //The ID stated first, then it being the Fruit type, number of fruit, etc. information listed out
-        print_Trees(farm);
+        
     }
 
 
