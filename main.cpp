@@ -15,7 +15,7 @@ using namespace std;
 //Then we have a print function to display the trees.
 //The print function will likely need to break up trees based on type
 
-void event_Resolution(int, map<string, array<string,3>>);
+void event_Resolution(int, map<string, array<string,3>>&);
 void print_Trees(map<string, array<string,3>>);
 string tree_Type();
 string fruit_Number();
@@ -107,7 +107,7 @@ int main()
 }
 
 //Takes in a number, then spits out according to that number.
-void event_Resolution(int rando, map<string, array<string,3>> treee)
+void event_Resolution(int rando, map<string, array<string,3>> &treee)
 {
     static bool pestecide_Used = NULL;
     if (rando == 1)
@@ -285,6 +285,7 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
     //Adjusts fruit count. Accounts for disasters.
 }
 
+//Increases tree's age
 string age_Up(map<string, array<string,3>> treee, int disaster)
 {
     array<string, 101> age = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
