@@ -40,6 +40,7 @@ int main()
     //I'll have the randomized tree options be individual function calls to reduce the size of main.
 
     //srand
+    srand(time(NULL));
 
     //Variables
     string treeput;
@@ -114,12 +115,14 @@ void print_Trees(map<string, array<string,3>>)
 };
 string tree_Type()
 {
-    //This will only be called once. It's gonna randomly select a tree from
-    //Some fruit that I think grow on trees.
+    array<string, 5> trees = {"apple", "orange", "lemon", "plum", "peach"};
+    int randomized = rand() % 5;
+    return trees[randomized]
 
 };
 string fruit_Number()
 {
+    
     //This will randomly generate fruit number based on age and type.
     //A number will be randomly generated. An array with like a hundred? Some numbe
     //of values will be made and just randomly call on one of them to return the number
@@ -139,6 +142,30 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
 
 string age_Up(map<string, array<string,3>> treee, int disaster)
 {
+    array<string, 101> age = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+  "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
+  "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine", "thirty",
+  "thirty-one", "thirty-two", "thirty-three", "thirty-four", "thirty-five", "thirty-six", "thirty-seven", "thirty-eight", "thirty-nine", "forty",
+  "forty-one", "forty-two", "forty-three", "forty-four", "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine", "fifty",
+  "fifty-one", "fifty-two", "fifty-three", "fifty-four", "fifty-five", "fifty-six", "fifty-seven", "fifty-eight", "fifty-nine", "sixty",
+  "sixty-one", "sixty-two", "sixty-three", "sixty-four", "sixty-five", "sixty-six", "sixty-seven", "sixty-eight", "sixty-nine", "seventy",
+  "seventy-one", "seventy-two", "seventy-three", "seventy-four", "seventy-five", "seventy-six", "seventy-seven", "seventy-eight", "seventy-nine", "eighty",
+  "eighty-one", "eighty-two", "eighty-three", "eighty-four", "eighty-five", "eighty-six", "eighty-seven", "eighty-eight", "eighty-nine", "ninety",
+  "ninety-one", "ninety-two", "ninety-three", "ninety-four", "ninety-five", "ninety-six", "ninety-seven", "ninety-eight", "ninety-nine", "one hundred"};
+
+    int i = 0;
+
+    auto it = treee.begin();
+    advance(it, 2); 
+    string age_str = it->second[2];
+
+    while( age_str != age[i])
+    {
+        i++;
+    }
+
+    age_str = age[i + 1];
+    return age_str;
     //Will just make the number listed for age increase by however much.
     //Will essentially just have a bunch of if statements to see the age number
     //Age will go up to 100.
