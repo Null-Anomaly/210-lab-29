@@ -22,8 +22,8 @@ string fruit_Number();
 string tree_Age();
 
 //These are for actually editing it once running.
-string fruit_Change(map<string, array<string,3>>,int);
-string age_Up(map<string, array<string,3>>);
+string fruit_Change(map<string, array<string,3>>, int);
+string age_Up(map<string, array<string,3>>, int);
 
 
 //The main will handle the filling of the data
@@ -50,7 +50,7 @@ int main()
     int randocool = 0;
     map<string, array<string,3>> farm;
 
-    ifstream fin("Outline.txt)");
+    ifstream fin("Values.txt)");
 
     //When I have file input this will actually do something
     while(fin.good())
