@@ -87,7 +87,7 @@ int main()
 //Takes in a number, then spits out according to that number.
 void event_Resolution(int rando, map<string, array<string,3>> treee)
 {
-    static bool pestecide_Used = false;
+    static bool pestecide_Used = NULL;
     if (rando == 1)
     {
         pestecide_Used = false;
@@ -111,14 +111,26 @@ void event_Resolution(int rando, map<string, array<string,3>> treee)
     }
     if (rando == 4)
     {
+        fruit_Change(treee, rando);
+        if(pestecide_Used == true)
+        {
+            age_Up(treee, 6);
+        }
+        age_Up(treee, rando);
+        pestecide_Used = false;
         //Plague. Will be reduced if pestecide was used last round. Decrease fruit
     }
     if (rando == 5)
     {
+        fruit_Change(treee, rando);
+        age_Up(treee, rando);
+        pestecide_Used = false;
         //Droughts. Decrease Fruit count.
     }
 
 };
+
+//Tree print function
 void print_Trees(map<string, array<string,3>> treee)
 {
     auto it = treee.begin();
@@ -129,6 +141,8 @@ void print_Trees(map<string, array<string,3>> treee)
     };
 
 };
+
+//Dictates the tree type
 string tree_Type()
 {
     array<string, 5> trees = {"apple", "orange", "lemon", "plum", "peach"};
@@ -160,21 +174,18 @@ return fruit[randomized];
 //Selects the tree's starting age
 string tree_Age()
 {
-    array<string, 101> age = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+    array<string, 52> age = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
   "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
   "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine", "thirty",
   "thirty-one", "thirty-two", "thirty-three", "thirty-four", "thirty-five", "thirty-six", "thirty-seven", "thirty-eight", "thirty-nine", "forty",
   "forty-one", "forty-two", "forty-three", "forty-four", "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine", "fifty",
-  "fifty-one", "fifty-two", "fifty-three", "fifty-four", "fifty-five", "fifty-six", "fifty-seven", "fifty-eight", "fifty-nine", "sixty",
-  "sixty-one", "sixty-two", "sixty-three", "sixty-four", "sixty-five", "sixty-six", "sixty-seven", "sixty-eight", "sixty-nine", "seventy",
-  "seventy-one", "seventy-two", "seventy-three", "seventy-four", "seventy-five", "seventy-six", "seventy-seven", "seventy-eight", "seventy-nine", "eighty",
-  "eighty-one", "eighty-two", "eighty-three", "eighty-four", "eighty-five", "eighty-six", "eighty-seven", "eighty-eight", "eighty-nine", "ninety",
-  "ninety-one", "ninety-two", "ninety-three", "ninety-four", "ninety-five", "ninety-six", "ninety-seven", "ninety-eight", "ninety-nine", "one hundred"};
-    int randomized = rand() % 101;
+  "fifty-one"};
+    int randomized = rand() % 51;
     return age[randomized];
 
 };
 
+//Changes the fruit's fruit number
 string fruit_Change(map<string, array<string,3>> treee,int disaster)
 {
     array<string, 51> fruit = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
