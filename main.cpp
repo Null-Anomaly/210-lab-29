@@ -69,6 +69,8 @@ int main()
 
     for(int i = 0; i < 25; i++)
     {
+        randocool = rand() % 100;
+
         //randomize each time. If under 20% do an if statement to put in a randomized event
         //Otherwise, just increase age by 1, and make it so that the trees have a random number of fruit
         event_Resolution(randocool, farm); //This should change the actual farm map, it it doesn't it will be
@@ -116,7 +118,10 @@ void event_Resolution(int rando, map<string, array<string,3>> treee)
         {
             age_Up(treee, 6);
         }
-        age_Up(treee, rando);
+        else
+        {
+            age_Up(treee, rando);
+        }
         pestecide_Used = false;
         //Plague. Will be reduced if pestecide was used last round. Decrease fruit
     }
@@ -136,7 +141,7 @@ void print_Trees(map<string, array<string,3>> treee)
     auto it = treee.begin();
     while(it != treee.end())
     {
-        cout << "Tree ID: " << it->first << " | Type: " << it->second[0] << " | Fruit Count: " << it->second[1] << " | Age: " << it->second[2] << endl;
+        cout << "Tree ID: " << it->first << " Type: " << it->second[0] << " Fruit Count: " << it->second[1] << " Age: " << it->second[2] << "\n";
         it++;
     };
 
@@ -197,12 +202,8 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
     auto it = treee.begin();
     string fruits = it->second[1];
     int randomization = 0;
-
-    if(disaster == 0)
-    {
-        randomization = rand() % 50;
-        return fruit[randomization];
-    }
+    
+    //Rain
     if(disaster == 1)
     {
         randomization = rand() % 50 + 10;
@@ -213,7 +214,8 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
         }
         return fruit[randomization];
     }
-    if(disaster == 2)
+    //Fertilizer
+    else if(disaster == 2)
     {
         randomization = rand() % 50 + 15;
         if(randomization > 50)
@@ -223,7 +225,8 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
         }
         return fruit[randomization];
     }
-    if(disaster == 4)
+    //Plague occurs
+    else if(disaster == 4)
     {
         randomization = rand() % 50 - 20;
         if(randomization < 0)
@@ -233,7 +236,8 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
         }
         return fruit[randomization];
     }
-    if(disaster == 5)
+    //Drout
+    else if(disaster == 5)
     {
         randomization = rand() % 50 - 10;
         if(randomization < 0)
@@ -243,7 +247,8 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
         }
         return fruit[randomization];
     }
-    if(disaster == 6)
+    //Plague but pesticides were used.
+    else if(disaster == 6)
     {
         randomization = rand() % 50 - 5;
         if(randomization < 0)
@@ -251,6 +256,12 @@ string fruit_Change(map<string, array<string,3>> treee,int disaster)
             randomization = 0;
             return fruit[randomization];
         }
+        return fruit[randomization];
+    }
+    //Any other non-fruit affecting event case.
+    else
+    {
+        randomization = rand() % 50;
         return fruit[randomization];
     }
     //Adjusts fruit count. Accounts for disasters.
