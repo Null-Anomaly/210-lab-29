@@ -109,6 +109,7 @@ int main()
 //Takes in a number, then spits out according to that number.
 void event_Resolution(int rando, map<string, array<string,3>> &treee)
 {
+    cout << "Made it to Event Reso function\n";
     static bool pestecide_Used = NULL;
     if (rando == 1)
     {
@@ -152,18 +153,21 @@ void event_Resolution(int rando, map<string, array<string,3>> &treee)
         pestecide_Used = false;
         //Droughts. Decrease Fruit count.
     }
+    cout << "Made it out of Event Reso function\n";
 
 };
 
 //Tree print function
 void print_Trees(map<string, array<string,3>> treee)
 {
+    cout << "Made it to print function\n";
     auto it = treee.begin();
     while(it != treee.end())
     {
         cout << "Tree ID: " << it->first << " | Type: " << it->second[0] << " | Fruit Count: " << it->second[1] << " | Age: " << it->second[2] << "\n";
         it++;
     };
+    cout << "Made it out of Event Reso function\n";
 
 };
 
