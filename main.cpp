@@ -22,8 +22,8 @@ string fruit_Number();
 string tree_Age();
 
 //These are for actually editing it once running.
-string fruit_Change(map<string, array<string,3>>&, int);
-string age_Up(map<string, array<string,3>>&, int);
+void fruit_Change(map<string, array<string,3>>&, int);
+void age_Up(map<string, array<string,3>>&, int);
 
 
 //The main will handle the filling of the data
@@ -85,12 +85,9 @@ int main()
         }*/
         if(true)
         {
-            for (int j = 0; j < farm.size(); j++)
-            {
-                it->second[1] = fruit_Change(farm, 0);
-                it->second[2] = age_Up(farm, 0);
-                advance(it,1);
-            }
+            fruit_Change(farm, 0);
+            age_Up(farm, 0);
+
             //cout << "Area 3b passed\n";
         }
 
@@ -127,48 +124,44 @@ void event_Resolution(int rando, map<string, array<string,3>> &treee)
         if (rando == 1)
         {
             pestecide_Used = false;
-            it->second[1] = fruit_Change(treee, rando);
-            it->second[2] = age_Up(treee, rando);
-            advance(it,1);
+            fruit_Change(treee, rando);
+            age_Up(treee, rando);
             //Rain. Increases fruit count.
         }
         if (rando == 2)
         {
             pestecide_Used = false;
-            it->second[1] = fruit_Change(treee, rando);
-            it->second[2] = age_Up(treee, rando);
-            advance(it,1);
+            fruit_Change(treee, rando);
+            age_Up(treee, rando);
             //Fertilized. Increases Fruit count. Maintains age
         }
         if (rando == 3)
         {
-            it->second[1] = fruit_Change(treee, rando);
-            it->second[2] = age_Up(treee, rando);
-            advance(it,1);
+            fruit_Change(treee, rando);
+            age_Up(treee, rando);
             pestecide_Used = true;
             //Pestecide. Increases age. Reduce effect of plague
         }
         if (rando == 4)
         {
-            it->second[1] = fruit_Change(treee, rando);
+            fruit_Change(treee, rando);
             if(pestecide_Used == true)
             {
-                it->second[2] = age_Up(treee, 6);
+                age_Up(treee, 6);
             }
             else
             {
-                it->second[2] = age_Up(treee, rando);
+                age_Up(treee, rando);
             }
             pestecide_Used = false;
-            advance(it,1);
+            
             //Plague. Will be reduced if pestecide was used last round. Decrease fruit
         }
         if (rando == 5)
         {
-            it->second[1] = fruit_Change(treee, rando);
-            it->second[2] = age_Up(treee, rando);
+            fruit_Change(treee, rando);
+            age_Up(treee, rando);
             pestecide_Used = false;
-            advance(it,1);
             //Droughts. Decrease Fruit count.
         }
     }
@@ -235,7 +228,7 @@ string tree_Age()
 };
 
 //Changes the fruit's fruit number
-string fruit_Change(map<string, array<string,3>> &treee,int disaster)
+void fruit_Change(map<string, array<string,3>> &treee,int disaster)
 {
     array<string, 51> fruit = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
   "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
@@ -244,73 +237,93 @@ string fruit_Change(map<string, array<string,3>> &treee,int disaster)
   "forty-one", "forty-two", "forty-three", "forty-four", "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine", "fifty",};
 
     int randomization = 0;
-    
+    auto it = treee.begin();
     //Rain
-    if(disaster == 1)
+    for(int i = 0; i < treee.size(); i++)
     {
-        randomization = rand() % 50 + 10;
-        if(randomization > 50)
+        if(disaster == 1)
         {
-            randomization = 50;
-            return fruit[randomization];
+            randomization = rand() % 50 + 10;
+            if(randomization > 50)
+            {
+                randomization = 50;
+                it->second[1] = fruit[randomization];
+            }
+            else
+            {
+                it->second[1] = fruit[randomization];
+            }
         }
-        return fruit[randomization];
-    }
-    //Fertilizer
-    else if(disaster == 2)
-    {
-        randomization = rand() % 50 + 15;
-        if(randomization > 50)
+        //Fertilizer
+        else if(disaster == 2)
         {
-            randomization = 50;
-            return fruit[randomization];
+            randomization = rand() % 50 + 15;
+            if(randomization > 50)
+            {
+                randomization = 50;
+                it->second[1] = fruit[randomization];
+            }
+            else
+            {
+                it->second[1] = fruit[randomization];
+            }
         }
-        return fruit[randomization];
-    }
-    //Plague occurs
-    else if(disaster == 4)
-    {
-        randomization = rand() % 50 - 20;
-        if(randomization < 0)
+        //Plague occurs
+        else if(disaster == 4)
         {
-            randomization = 0;
-            return fruit[randomization];
+            randomization = rand() % 50 - 20;
+            if(randomization < 0)
+            {
+                randomization = 0;
+                it->second[1] = fruit[randomization];
+            }
+            else
+            {
+                it->second[1] = fruit[randomization];
+            }
         }
-        return fruit[randomization];
-    }
-    //Drout
-    else if(disaster == 5)
-    {
-        randomization = rand() % 50 - 10;
-        if(randomization < 0)
+        //Drout
+        else if(disaster == 5)
         {
-            randomization = 0;
-            return fruit[randomization];
+            randomization = rand() % 50 - 10;
+            if(randomization < 0)
+            {
+                randomization = 0;
+                it->second[1] = fruit[randomization];
+            }
+            else
+            {
+                it->second[1] = fruit[randomization];
+            }
+            
         }
-        return fruit[randomization];
-    }
-    //Plague but pesticides were used.
-    else if(disaster == 6)
-    {
-        randomization = rand() % 50 - 5;
-        if(randomization < 0)
+        //Plague but pesticides were used.
+        else if(disaster == 6)
         {
-            randomization = 0;
-            return fruit[randomization];
+            randomization = rand() % 50 - 5;
+            if(randomization < 0)
+            {
+                randomization = 0;
+                it->second[1] = fruit[randomization];
+            }
+            else
+            {
+                it->second[1] = fruit[randomization];
+            }
         }
-        return fruit[randomization];
+        //Any other non-fruit affecting event case.
+        else
+        {
+            randomization = rand() % 50;
+            it->second[1] = fruit[randomization];
+        }
+        advance(it,1);
+        //Adjusts fruit count. Accounts for disasters.
     }
-    //Any other non-fruit affecting event case.
-    else
-    {
-        randomization = rand() % 50;
-        return fruit[randomization];
-    }
-    //Adjusts fruit count. Accounts for disasters.
 }
 
 //Increases tree's age
-string age_Up(map<string, array<string,3>> &treee, int disaster)
+void age_Up(map<string, array<string,3>> &treee, int disaster)
 {
     array<string, 101> age = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
   "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
@@ -325,23 +338,29 @@ string age_Up(map<string, array<string,3>> &treee, int disaster)
 
     int i = 0;
 
-    auto it = treee.begin();
-
-    while( it->second[2] != age[i])
+    static auto it = treee.begin();
+    for(int j = 0; j < treee.size(); j++)
     {
-        i++;
+        while( it->second[2] != age[i])
+        {
+            i++;
+        }
+
+        if (disaster == 3)
+        {
+            i ++;
+        }
+        if (disaster == 2)
+        {
+            i--;
+        }
+        it->second[2] = age[i+1];
+        advance(it,1);
+        i = 0;
     }
 
-    if (disaster == 3)
-    {
-        i ++;
-    }
-    if (disaster == 2)
-    {
-        i--;
-    }
+    
 
-    return age[i + 1];
     //Will just make the number listed for age increase by however much.
     //Will essentially just have a bunch of if statements to see the age number
     //Age will go up to 100.
