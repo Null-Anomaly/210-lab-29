@@ -63,13 +63,15 @@ int main()
         farm[treeput] = {fruit, num, age};
         //And so on and so forth.
     }
-    cout << "Program cleared area 1\n";
+    //cout << "Program cleared area 1\n";
 
     //Print initial conditions here. Then from there we begin doing the various loops
     //So with this spot we start doing randomization
     //Insert random integer here.
     print_Trees(farm);
-    cout << "Program cleared area 2\n";
+    //cout << "Program cleared area 2\n";
+
+    auto it = farm.begin();
 
     for(int i = 0; i < 25; i++)
     {
@@ -77,13 +79,13 @@ int main()
         if(randocool <= 20)
         {
             event_Resolution(randocool, farm);
-            cout << "Area 3a passed\n";
+           // cout << "Area 3a passed\n";
         }
         else
         {
-            fruit_Change(farm, 0);
-            age_Up(farm, 0);
-            cout << "Area 3b passed\n";
+            it->second[1] = fruit_Change(farm, 0);
+            it->second[2] = age_Up(farm, 0);
+            //cout << "Area 3b passed\n";
         }
 
         cout << "Year: " << i + 1 << "\n";
