@@ -10,3 +10,7 @@ Bug 6: Age values not tied to event resolution errors. Issues are elsewhere. Edi
     Error Found in age_Up function.
 Bug 7: Issue found with attempting to return values to main function. Found to be unrealistic
     Moving all changes to maps to just the sub-functions.
+Bug 8: Somewhere, it is going out of bounds.
+Bug 9: Due to having made a portion of the code static in a previous version, it was causing
+    an unexpected overflow
+Bug 10:

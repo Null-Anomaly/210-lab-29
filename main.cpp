@@ -26,19 +26,9 @@ void fruit_Change(map<string, array<string,3>>&, int);
 void age_Up(map<string, array<string,3>>&, int);
 
 
-//The main will handle the filling of the data
-//It should also handle the random event chance stuff. Ill give a 20%
-//chance for event to occur.
+//The main
 int main()
 {
-
-    //This is going to be where the file input comes in.
-    //The file will simply just shove into a new map..
-    //The maps will likely be made by a loop just pushing in the values gotten from the text fiel
-    //And the individual things about the map will be put in by some randomized choices.
-    //The randomized choices will include the tree type, fruit it produced, and age.
-    //I'll have the randomized tree options be individual function calls to reduce the size of main.
-
     //srand
     srand(time(NULL));
 
@@ -50,8 +40,8 @@ int main()
     int randocool = 0;
     map<string, array<string,3>> farm;
 
-    ifstream fin("Values_short.txt)");
-    fin.open("Values_short.txt");
+    ifstream fin("Values.txt)");
+    fin.open("Values.txt");
 
     //When I have file input this will actually do something
     while(fin.good())
@@ -63,14 +53,8 @@ int main()
         farm[treeput] = {fruit, num, age};
         //And so on and so forth.
     }
-    //cout << "Program cleared area 1\n";
-
     //Print initial conditions here. Then from there we begin doing the various loops
-    //So with this spot we start doing randomization
-    //Insert random integer here.
     print_Trees(farm);
-    //cout << "Program cleared area 2\n";
-    
     
 
     for(int i = 0; i < 25; i++)
@@ -107,7 +91,6 @@ void event_Resolution(int rando, map<string, array<string,3>> &treee)
     //cout << "Made it to Event Reso function\n";
     
     static bool pestecide_Used = NULL;
-    auto it = treee.begin();
    
     if (rando == 1)
     {
@@ -223,6 +206,7 @@ void fruit_Change(map<string, array<string,3>> &treee,int disaster)
   "thirty-one", "thirty-two", "thirty-three", "thirty-four", "thirty-five", "thirty-six", "thirty-seven", "thirty-eight", "thirty-nine", "forty",
   "forty-one", "forty-two", "forty-three", "forty-four", "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine", "fifty",};
 
+
     int randomization = 0;
     auto it = treee.begin();
     //Rain
@@ -325,7 +309,7 @@ void age_Up(map<string, array<string,3>> &treee, int disaster)
 
     int i = 0;
 
-    static auto it = treee.begin();
+    auto it = treee.begin();
     for(int j = 0; j < treee.size(); j++)
     {
         while( it->second[2] != age[i])
@@ -346,9 +330,4 @@ void age_Up(map<string, array<string,3>> &treee, int disaster)
         i = 0;
     }
 
-    
-
-    //Will just make the number listed for age increase by however much.
-    //Will essentially just have a bunch of if statements to see the age number
-    //Age will go up to 100.
 }
