@@ -4,4 +4,6 @@ Bug 1: While it does output all values of the map list, it does not edit them.
 Bug 2: It will run into a seg fault if iterator is not placed in the correct location
     for the number of items in the list
 Bug 3:Issue where it only interacts with the first value on the list and does not properly iterate
-Bug 4:
+Bug 4:The values aren't being passed up properly to the main set of maps
+Bug 5: Age value from first ID is being passed to others when put through the event resolution function
+Bug 6:

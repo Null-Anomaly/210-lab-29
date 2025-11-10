@@ -78,12 +78,12 @@ int main()
         auto it = farm.begin();
         randocool = rand() % 100;
 
-        if(randocool <= 20)
+        /*if(randocool <= 20)
         {
             event_Resolution(randocool,farm);
            // cout << "Area 3a passed\n";
-        }
-        else
+        }*/
+        if(true)
         {
             for (int j = 0; j < farm.size(); j++)
             {
@@ -187,7 +187,7 @@ void print_Trees(map<string, array<string,3>> treee)
         cout << "Tree ID: " << it->first << " | Type: " << it->second[0] << " | Fruit Count: " << it->second[1] << " | Age: " << it->second[2] << "\n";
         it++;
     };
-    cout << "Made it out of Event Reso function\n";
+    cout << "Made it out of print function\n";
 
 };
 
