@@ -70,7 +70,7 @@ int main()
     //Insert random integer here.
     print_Trees(farm);
     //cout << "Program cleared area 2\n";
-
+    
     auto it = farm.begin();
 
     for(int i = 0; i < 25; i++)
@@ -80,7 +80,7 @@ int main()
         {
             for(it; it != farm.end(); ++it)
             {
-                event_Resolution(randocool, it);
+                event_Resolution(randocool,farm);
             }
            // cout << "Area 3a passed\n";
         }
@@ -114,48 +114,55 @@ int main()
 //Takes in a number, then spits out according to that number.
 void event_Resolution(int rando, map<string, array<string,3>> &treee)
 {
-    cout << "Made it to Event Reso function\n";
+    //cout << "Made it to Event Reso function\n";
+    static auto it = treee.begin();
+    
     static bool pestecide_Used = NULL;
     if (rando == 1)
     {
         pestecide_Used = false;
-        fruit_Change(treee, rando);
-        age_Up(treee, rando);
+        it->second[1] = fruit_Change(treee, rando);
+        it->second[2] = age_Up(treee, rando);
+        advance(it,1);
         //Rain. Increases fruit count.
     }
     if (rando == 2)
     {
         pestecide_Used = false;
-        fruit_Change(treee, rando);
-        age_Up(treee, rando);
+        it->second[1] = fruit_Change(treee, rando);
+        it->second[2] = age_Up(treee, rando);
+        advance(it,1);
         //Fertilized. Increases Fruit count. Maintains age
     }
     if (rando == 3)
     {
-        fruit_Change(treee, rando);
-        age_Up(treee, rando);
+        it->second[1] = fruit_Change(treee, rando);
+        it->second[2] = age_Up(treee, rando);
+        advance(it,1);
         pestecide_Used = true;
         //Pestecide. Increases age. Reduce effect of plague
     }
     if (rando == 4)
     {
-        fruit_Change(treee, rando);
+        it->second[1] = fruit_Change(treee, rando);
         if(pestecide_Used == true)
         {
-            age_Up(treee, 6);
+            it->second[2] = age_Up(treee, 6);
         }
         else
         {
-            age_Up(treee, rando);
+            it->second[2] = age_Up(treee, rando);
         }
         pestecide_Used = false;
+        advance(it,1);
         //Plague. Will be reduced if pestecide was used last round. Decrease fruit
     }
     if (rando == 5)
     {
-        fruit_Change(treee, rando);
-        age_Up(treee, rando);
+        it->second[1] = fruit_Change(treee, rando);
+        it->second[2] = age_Up(treee, rando);
         pestecide_Used = false;
+        advance(it,1);
         //Droughts. Decrease Fruit count.
     }
     cout << "Made it out of Event Reso function\n";
