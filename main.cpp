@@ -75,33 +75,23 @@ int main()
 
     for(int i = 0; i < 25; i++)
     {
-        auto it = farm.begin();
         randocool = rand() % 100;
 
-        /*if(randocool <= 20)
+        if(randocool <= 20)
         {
             event_Resolution(randocool,farm);
            // cout << "Area 3a passed\n";
-        }*/
-        if(true)
+        }
+        else
         {
             fruit_Change(farm, 0);
             age_Up(farm, 0);
-
             //cout << "Area 3b passed\n";
         }
 
         cout << "Year: " << i + 1 << "\n";
         print_Trees(farm);
 
-        //randomize each time. If under 20% do an if statement to put in a randomized event
-        //Otherwise, just increase age by 1, and make it so that the trees have a random number of fruit
-         //This should change the actual farm map, it it doesn't it will be
-        //changed to pass by reference.
-        //Change fruit count normally if there's no event resolution
-        //Age up the trees once.
-        //Print out this batch of trees in a nice manner. Likely going to have
-        //The ID stated first, then it being the Fruit type, number of fruit, etc. information listed out
         
     }
 
@@ -118,54 +108,51 @@ void event_Resolution(int rando, map<string, array<string,3>> &treee)
     
     static bool pestecide_Used = NULL;
     auto it = treee.begin();
-    for(int i = 0; i < treee.size(); i++)
+   
+    if (rando == 1)
     {
-    
-        if (rando == 1)
-        {
-            pestecide_Used = false;
-            fruit_Change(treee, rando);
-            age_Up(treee, rando);
-            //Rain. Increases fruit count.
-        }
-        if (rando == 2)
-        {
-            pestecide_Used = false;
-            fruit_Change(treee, rando);
-            age_Up(treee, rando);
-            //Fertilized. Increases Fruit count. Maintains age
-        }
-        if (rando == 3)
-        {
-            fruit_Change(treee, rando);
-            age_Up(treee, rando);
-            pestecide_Used = true;
-            //Pestecide. Increases age. Reduce effect of plague
-        }
-        if (rando == 4)
-        {
-            fruit_Change(treee, rando);
-            if(pestecide_Used == true)
-            {
-                age_Up(treee, 6);
-            }
-            else
-            {
-                age_Up(treee, rando);
-            }
-            pestecide_Used = false;
-            
-            //Plague. Will be reduced if pestecide was used last round. Decrease fruit
-        }
-        if (rando == 5)
-        {
-            fruit_Change(treee, rando);
-            age_Up(treee, rando);
-            pestecide_Used = false;
-            //Droughts. Decrease Fruit count.
-        }
+        pestecide_Used = false;
+        fruit_Change(treee, rando);
+        age_Up(treee, rando);
+        //Rain. Increases fruit count.
     }
-    
+    if (rando == 2)
+    {
+        pestecide_Used = false;
+        fruit_Change(treee, rando);
+        age_Up(treee, rando);
+        //Fertilized. Increases Fruit count. Maintains age
+    }
+    if (rando == 3)
+    {
+        fruit_Change(treee, rando);
+        age_Up(treee, rando);
+        pestecide_Used = true;
+        //Pestecide. Increases age. Reduce effect of plague
+    }
+    if (rando == 4)
+    {
+        fruit_Change(treee, rando);
+        if(pestecide_Used == true)
+        {
+            age_Up(treee, 6);
+        }
+        else
+        {
+            age_Up(treee, rando);
+        }
+        pestecide_Used = false;
+        
+        //Plague. Will be reduced if pestecide was used last round. Decrease fruit
+    }
+    if (rando == 5)
+    {
+        fruit_Change(treee, rando);
+        age_Up(treee, rando);
+        pestecide_Used = false;
+        //Droughts. Decrease Fruit count.
+    }
+
     cout << "Made it out of Event Reso function\n";
 
 };
