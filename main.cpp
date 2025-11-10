@@ -78,7 +78,10 @@ int main()
         randocool = rand() % 100;
         if(randocool <= 20)
         {
-            event_Resolution(randocool, farm);
+            for(it; it != farm.end(); ++it)
+            {
+                event_Resolution(randocool, it);
+            }
            // cout << "Area 3a passed\n";
         }
         else
