@@ -1,0 +1,7 @@
+Issues found when implementing beta version:
+
+Bug 1: While it does output all values of the map list, it does not edit them.
+Bug 2: It will run into a seg fault if iterator is not placed in the correct location
+    for the number of items in the list
+Bug 3:Issue where it only interacts with the first value on the list and does not properly iterate
+Bug 4:

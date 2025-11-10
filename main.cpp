@@ -71,23 +71,26 @@ int main()
     print_Trees(farm);
     //cout << "Program cleared area 2\n";
     
-    auto it = farm.begin();
+    
 
     for(int i = 0; i < 25; i++)
     {
+        auto it = farm.begin();
         randocool = rand() % 100;
+
         if(randocool <= 20)
         {
-            for(it; it != farm.end(); ++it)
-            {
-                event_Resolution(randocool,farm);
-            }
+            event_Resolution(randocool,farm);
            // cout << "Area 3a passed\n";
         }
         else
         {
-            it->second[1] = fruit_Change(farm, 0);
-            it->second[2] = age_Up(farm, 0);
+            for (int j = 0; j < farm.size(); j++)
+            {
+                it->second[1] = fruit_Change(farm, 0);
+                it->second[2] = age_Up(farm, 0);
+                advance(it,1);
+            }
             //cout << "Area 3b passed\n";
         }
 
@@ -115,56 +118,61 @@ int main()
 void event_Resolution(int rando, map<string, array<string,3>> &treee)
 {
     //cout << "Made it to Event Reso function\n";
-    static auto it = treee.begin();
     
     static bool pestecide_Used = NULL;
-    if (rando == 1)
+    auto it = treee.begin();
+    for(int i = 0; i < treee.size(); i++)
     {
-        pestecide_Used = false;
-        it->second[1] = fruit_Change(treee, rando);
-        it->second[2] = age_Up(treee, rando);
-        advance(it,1);
-        //Rain. Increases fruit count.
-    }
-    if (rando == 2)
-    {
-        pestecide_Used = false;
-        it->second[1] = fruit_Change(treee, rando);
-        it->second[2] = age_Up(treee, rando);
-        advance(it,1);
-        //Fertilized. Increases Fruit count. Maintains age
-    }
-    if (rando == 3)
-    {
-        it->second[1] = fruit_Change(treee, rando);
-        it->second[2] = age_Up(treee, rando);
-        advance(it,1);
-        pestecide_Used = true;
-        //Pestecide. Increases age. Reduce effect of plague
-    }
-    if (rando == 4)
-    {
-        it->second[1] = fruit_Change(treee, rando);
-        if(pestecide_Used == true)
+    
+        if (rando == 1)
         {
-            it->second[2] = age_Up(treee, 6);
-        }
-        else
-        {
+            pestecide_Used = false;
+            it->second[1] = fruit_Change(treee, rando);
             it->second[2] = age_Up(treee, rando);
+            advance(it,1);
+            //Rain. Increases fruit count.
         }
-        pestecide_Used = false;
-        advance(it,1);
-        //Plague. Will be reduced if pestecide was used last round. Decrease fruit
+        if (rando == 2)
+        {
+            pestecide_Used = false;
+            it->second[1] = fruit_Change(treee, rando);
+            it->second[2] = age_Up(treee, rando);
+            advance(it,1);
+            //Fertilized. Increases Fruit count. Maintains age
+        }
+        if (rando == 3)
+        {
+            it->second[1] = fruit_Change(treee, rando);
+            it->second[2] = age_Up(treee, rando);
+            advance(it,1);
+            pestecide_Used = true;
+            //Pestecide. Increases age. Reduce effect of plague
+        }
+        if (rando == 4)
+        {
+            it->second[1] = fruit_Change(treee, rando);
+            if(pestecide_Used == true)
+            {
+                it->second[2] = age_Up(treee, 6);
+            }
+            else
+            {
+                it->second[2] = age_Up(treee, rando);
+            }
+            pestecide_Used = false;
+            advance(it,1);
+            //Plague. Will be reduced if pestecide was used last round. Decrease fruit
+        }
+        if (rando == 5)
+        {
+            it->second[1] = fruit_Change(treee, rando);
+            it->second[2] = age_Up(treee, rando);
+            pestecide_Used = false;
+            advance(it,1);
+            //Droughts. Decrease Fruit count.
+        }
     }
-    if (rando == 5)
-    {
-        it->second[1] = fruit_Change(treee, rando);
-        it->second[2] = age_Up(treee, rando);
-        pestecide_Used = false;
-        advance(it,1);
-        //Droughts. Decrease Fruit count.
-    }
+    
     cout << "Made it out of Event Reso function\n";
 
 };
